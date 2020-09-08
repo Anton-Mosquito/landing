@@ -20,3 +20,19 @@
 
 - Запустить команду npm install в терминале. Данная команда установит все пакеты,
   которые указаны в файле package.json, а также все их зависимости.
+
+## Повторить :
+
+1. Git
+
+- git status
+- git add
+- git commint -m 'some message'
+- git push
+- git branch
+- git checkout
+- git merge
+
+2.  Gulp
+
+- autoprefexer & sourcemap
