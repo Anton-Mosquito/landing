@@ -1,0 +1,62 @@
+@mixin cercle($size, $color) {
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+    background-color: $color;
+}
+
+@mixin triangle($width, $direction, $color) {
+    width: 0;
+    height: 0;
+    display: block;
+    @if $direction==up {
+        border-left: $width solid transparent;
+        border-right: $width solid transparent;
+        border-bottom: $width solid $color;
+    }
+    @if $direction==down {
+        border-left: $width solid transparent;
+        border-right: $width solid transparent;
+        border-top: $width solid $color;
+    }
+    @if $direction==right {
+        border-top: $width solid transparent;
+        border-left: $width solid $color;
+        border-bottom: $width solid transparent;
+    }
+    @if $direction==left {
+        border-top: $width solid transparent;
+        border-right: $width solid $color;
+        border-bottom: $width solid transparent;
+    }
+}
+
+@mixin centerer($direction) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @if $direction==vertical {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    @if $direction==horizontal {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@mixin placeholder($color) {
+    &::input-placeholder {
+        color: $color;
+    }
+}
+
+@mixin font($size, $font, $color) {
+    font-family: $font;
+    $font-size: $size;
+    line-height: 1.2;
+    color: $color;
+}

@@ -7,6 +7,7 @@ const rimraf = require('rimraf');
 const rename = require("gulp-rename");
 const autoprefixer = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
+const concat = require('gulp-concat');
 
 // Static server
 gulp.task('server', function() {
@@ -31,7 +32,7 @@ gulp.task('tamplates:compile', function buildHTML() {
 /*------------------Style Compile------------------------*/
 gulp.task('styles:compile', function() {
     return gulp.src("source/styles/main.scss")
-        .pipe(sass({ outputStyle: 'compressed' }))
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(rename('main.min.css'))
         .pipe(gulp.dest("build/css"))
 });
@@ -82,7 +83,7 @@ gulp.task('watch', function() {
 
 /* ------------ Auto-----------------*/
 gulp.task('autoprefixer', function() {
-    gulp.src('source/styles/main.scss')
+    gulp.src('./source/styles/main.scss')
         .pipe(autoprefixer({
             cascade: false
         }))
@@ -92,7 +93,7 @@ gulp.task('autoprefixer', function() {
 
 /* ------------ Source Map-----------------*/
 gulp.task('javascript', function() {
-    gulp.src('source/js/*.js')
+    gulp.src('./source/js/*.js')
         .pipe(sourcemaps.init())
         .pipe(plugin1())
         .pipe(plugin2())
@@ -100,6 +101,15 @@ gulp.task('javascript', function() {
         .pipe(gulp.dest('build/js'));
 });
 
+
+/*-------------- Concat ------------------- */
+gulp.task('concat', function() {
+    return gulp.src('./source/js/*.js')
+        .pipe(concat('all.js'))
+        .pipe(gulp.dest('build/js'));
+});
+
+/*---------------- Default ----------------- */
 gulp.task('default', gulp.series(
     'clean',
     gulp.parallel('tamplates:compile', 'styles:compile', 'sprite', 'copy'),
