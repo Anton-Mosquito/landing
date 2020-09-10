@@ -105,7 +105,7 @@ gulp.task('javascript', function() {
 /*-------------- Concat ------------------- */
 gulp.task('concat', function() {
     return gulp.src('./source/js/*.js')
-        .pipe(concat('all.js'))
+        .pipe(concat('finish.js'))
         .pipe(gulp.dest('build/js'));
 });
 
