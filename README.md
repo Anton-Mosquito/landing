@@ -27,7 +27,7 @@
 
 - git status
 - git add
-- git commint -m 'some message'
+- git commit -m 'some message'
 - git push
 - git branch
 - git checkout
